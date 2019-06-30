@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  catid: MyString
+  catname: MyString
+
+two:
+  catid: MyString
+  catname: MyString

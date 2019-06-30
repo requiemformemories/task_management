@@ -1,0 +1,2 @@
+class UserTaskship < ApplicationRecord
+end

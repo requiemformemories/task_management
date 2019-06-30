@@ -1,0 +1,2 @@
+class TagTaskship < ApplicationRecord
+end
