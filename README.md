@@ -1,24 +1,44 @@
-# README
+# 5xtraining Backend 作業
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+ ## Table schema
+|Task       |           |                     |
+|-----------|-----------|---------------------|
+|taskid     |`string`   |primary key, required|
+|start_time |`datetime` |                     |
+|end_time   |`datetime` |                     |
+|priority   |`integer`  |                     |
+|status     |`integer`  |required             |
+|cat        |`string`   |                     |
 
-Things you may want to cover:
 
-* Ruby version
+|User       |          |                      |
+|-----------|----------|----------------------|
+|uid        |`string`  |primary key, required |
+|name       |`string`  |required              |
+|username   |`string`  |required,unique       |
+|passwd     |`string`  |required              |
+|role       |`integer` |required              |
 
-* System dependencies
+|Category   |           |                     |
+|-----------|-----------|---------------------|
+|catid      |`string`  |primary key, required |
+|catname    |`string`  |required              |
 
-* Configuration
+|User_task_relation|           |                |
+|------------------|-----------|----------------|
+|utid      |`string`  |primary key, required    |
+|user      |`string`  |required                 |
+|task      |`string`  |required                 |
 
-* Database creation
+|Tag        |          |                      |
+|-----------|----------|----------------------|
+|tagid      |`string`  |primary key, required |
+|tagname    |`string`  |required              |
 
-* Database initialization
+|tag_task_relation|            |                       |
+|-----------------|------------|-----------------------|
+|ttid             |`string`  |primary key, required    |
+|tag              |`string`  |required                 |
+|task             |`string`  |required                 |
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
