@@ -1,0 +1,31 @@
+
+p style="color: green" 
+  = flash[:notice] 
+p style="color: red" 
+  = flash[:alert] 
+
+ul = form_for @task, :url => { :controller => 'tasks', :action => 'create' } do |f|
+  li = f.label :topic, "標題"
+  li = f.text_field :topic
+  li = f.label :start_time, "開始時間"
+  li = f.datetime_field :start_time
+  li = f.label :end_time, "結束時間"
+  li = f.datetime_field :end_time
+  li = f.label :status, "任務狀態"
+  li = f.select :status, ['待處理', '進行中','已完成']
+  li = f.label :priority, "優先次序"
+  li = f.select :priority, ['低', '中','高']
+  li = f.label :content, "內容"
+  li = f.text_area :content
+  li = f.submit "新增"
+
+
+.task-board
+  - @tasks.each do |task|
+    .post
+      .topic = task.topic
+      = task.status
+      = task.priority
+      p = link_to '展開', :controller => 'tasks', :action => 'show', :id => task.taskid
+      p = link_to '修改', :controller => 'tasks', :action => 'edit', :id => task.taskid
+      p = button_to '刪除', task_path(task.taskid), :method => :delete
