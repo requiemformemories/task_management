@@ -5,5 +5,7 @@ rvm:
 - jruby-19mode
 - rbx-2
 script:
-- rspec
-
+- bundle exec rake db:setup
+- bundle exec rspec
+services:
+- postgresql
