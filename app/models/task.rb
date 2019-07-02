@@ -14,6 +14,6 @@ class Task < ApplicationRecord
   end
 
   def fill_status
-    self.status = 0
+    self.status = self.status ? self.status : 0
   end
 end

@@ -1,7 +1,7 @@
 
 h3 = @task.topic
-p = @task.status
-p = @task.priority
+p = status_text(@task.status)
+p = priority_text(@task.priority)
 p = @task.start_time
 p = @task.end_time
 p = simple_format(@task.content)
