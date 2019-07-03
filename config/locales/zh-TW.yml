@@ -1,0 +1,39 @@
+"zh-TW":
+  back_to_index: "回首頁"
+  create: "新增"
+  show: "展開"
+  edit: "修改"
+  update: "更新"
+  delete: "刪除"
+  
+  task:    
+    task: "任務"
+    tasks: "任務"
+    topic: "標題"
+    start_time: "開始時間"
+    end_time: "結束時間"
+    status: "任務狀態"
+    status_0: "待處理"
+    status_1: "進行中"
+    status_2: "已完成"
+    priority: "優先順序"
+    priority_0: "低"
+    priority_1: "中"
+    priority_2: "高"
+    content: "內容"
+    create_success: "任務新增成功"
+    create_failed: "任務新增失敗"
+    update_success: "任務修改成功"
+    update_failed: "任務修改失敗"
+    delete_success: "任務刪除成功"
+    delete_failed: "任務刪除失敗"
+  activerecord:
+    attributes: 
+      task:    
+        topic: "標題"
+        start_time: "開始時間"
+        end_time: "結束時間"
+        status: "任務狀態"
+        priority: "優先次序"
+        content: "內容"
+    

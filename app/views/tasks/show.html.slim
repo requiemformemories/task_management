@@ -1,9 +1,24 @@
 
 h3 = @task.topic
-p = status_text(@task.status)
-p = priority_text(@task.priority)
-p = @task.start_time
+p 
+  = t("task.status")
+  span ：
+  = status_text(@task.status)
+p 
+  = t("task.priority")
+  span ：
+  = priority_text(@task.priority)
+p 
+  = t("task.start_time")
+  span ：  
+  = @task.start_time
+p 
+  = t("task.end_time")
+  span ：  
 p = @task.end_time
+p 
+  = t("task.content")
+  span ：
 p = simple_format(@task.content)
 
-p = link_to '回首頁', :controller => 'tasks', :action => 'index' 
+p = link_to t("back_to_index"), :controller => 'tasks', :action => 'index' 

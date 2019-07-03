@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title Backend5xtraining
+    = csrf_meta_tags 
+    = csp_meta_tag 
+
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+  body
+    .language
+      = link_to "中文版", :controller => 'tasks', :action => 'index', :locale => "zh-TW"
+      = link_to "English", :controller => 'tasks', :action => 'index', :locale => "en" 
+    
+    p style="color: green" 
+    = flash[:notice] 
+    p style="color: red" 
+    = flash[:alert]  
+    = yield

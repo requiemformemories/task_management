@@ -1,0 +1,17 @@
+- if @task.errors.any?
+      ul
+      - @task.errors.full_messages.each do |msg|
+        li = msg
+
+li = f.label :topic, t("task.topic") 
+li = f.text_field :topic 
+li = f.label :start_time, t("task.start_time") 
+li = f.datetime_field :start_time 
+li = f.label :end_time, t("task.end_time") 
+li = f.datetime_field :end_time
+li = f.label :status, t("task.status")
+li = f.select :status,   [[t('task.status_0'), 0], [t('task.status_1'), 1],[t('task.status_2'), 2]]
+li = f.label :priority, t("task.priority")
+li = f.select :priority, [[t('task.priority_0'), 0], [t('task.priority_1'), 1], [t('task.priority_2'), 2]]
+li = f.label :content, t("task.content")
+li = f.text_area :content
