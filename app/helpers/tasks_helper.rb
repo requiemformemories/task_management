@@ -2,11 +2,11 @@ module TasksHelper
   def status_text(status)
     case status
       when 0
-        return "待處理" 
+        return t("task.status_0")
       when 1
-        return "進行中"
+        return t("task.status_1")
       when 2
-        return "已完成"
+        return t("task.status_2")
       else
         return ""
     end
@@ -15,11 +15,11 @@ module TasksHelper
   def priority_text(priority)
     case priority
       when 0
-        return "低" 
+        return t("task.priority_0")
       when 1
-        return "中"
+        return t("task.priority_1")
       when 2
-        return "高"
+        return t("task.priority_2")
       else
         return ""
     end    
