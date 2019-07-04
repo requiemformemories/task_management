@@ -1,9 +1,8 @@
 class CreateTagTaskships < ActiveRecord::Migration[5.2]
   def change
     create_table :tag_taskships do |t|
-      t.string :ttid
-      t.string :tag
-      t.string :task
+      t.integer :tag_id, null: false
+      t.integer :task_id, null: false
 
       t.timestamps
     end
