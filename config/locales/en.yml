@@ -58,6 +58,7 @@ en:
     update_failed: "fail to update the task."
     delete_success: "the task is successfully deleted."
     delete_failed: "fail to delete the task."
+    end_time_after_start_time: "should be after start time"
   activerecord:
     attributes: 
       task:   

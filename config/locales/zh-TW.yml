@@ -27,6 +27,7 @@
     update_failed: "任務修改失敗"
     delete_success: "任務刪除成功"
     delete_failed: "任務刪除失敗"
+    end_time_after_start_time: "需晚於起始時間"
   activerecord:
     attributes: 
       task:    

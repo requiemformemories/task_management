@@ -1,44 +1,46 @@
 # 5xtraining Backend 作業
 
  ## Table schema
-|Task       |           |                     |
+|tasks      |           |                     |
 |-----------|-----------|---------------------|
-|taskid     |`string`   |primary key, required|
+|id         |`integer`  |primary key          |
+|taskid     |`string`   |required, unique     |
 |start_time |`datetime` |                     |
 |end_time   |`datetime` |                     |
-|priority   |`integer`  |                     |
+|priority   |`integer`  |required             |
 |status     |`integer`  |required             |
 |cat        |`string`   |                     |
 
 
-|User       |          |                      |
+|users      |          |                      |
 |-----------|----------|----------------------|
-|uid        |`string`  |primary key, required |
+|id         |`integer` |primary key           |
+|uid        |`string`  |required, unique      |
 |name       |`string`  |required              |
-|username   |`string`  |required,unique       |
+|username   |`string`  |required, unique      |
 |passwd     |`string`  |required              |
 |role       |`integer` |required              |
 
-|Category   |           |                     |
+|categories |           |                     |
 |-----------|-----------|---------------------|
-|catid      |`string`  |primary key, required |
-|catname    |`string`  |required              |
+|id         |`integer`  |primary key          |
+|catname    |`string`   |required, unique     |
 
-|User_task_relation|           |                |
-|------------------|-----------|----------------|
-|utid      |`string`  |primary key, required    |
-|user      |`string`  |required                 |
-|task      |`string`  |required                 |
+|user_taskships|          |                      |
+|--------------|----------|----------------------|
+|id            |`integer` |primary key           |
+|user          |`string`  |required              |
+|task          |`string`  |required              |
 
-|Tag        |          |                      |
+|tags       |          |                      |
 |-----------|----------|----------------------|
-|tagid      |`string`  |primary key, required |
-|tagname    |`string`  |required              |
+|id         |`integer` |primary key           |
+|tagname    |`string`  |required, unique      |
 
-|tag_task_relation|            |                       |
+|tag_taskships    |            |                       |
 |-----------------|------------|-----------------------|
-|ttid             |`string`  |primary key, required    |
-|tag              |`string`  |required                 |
-|task             |`string`  |required                 |
+|id               |`integer`   |primary key            |
+|tag              |`string`    |required               |
+|task             |`string`    |required               |
 
 
