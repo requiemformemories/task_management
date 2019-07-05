@@ -1,6 +1,13 @@
 class TasksController < ApplicationController
   def index
-    @tasks = Task.all
+    
+    sorting = "created_at ASC"
+    case params[:order]
+    when "end_time"
+      sorting = "end_time ASC"
+    end
+    
+    @tasks = Task.order(sorting)
     @task = Task.new
   end
 

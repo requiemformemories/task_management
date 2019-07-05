@@ -5,6 +5,8 @@ ul = form_for @task, :url => { :controller => 'tasks', :action => 'create' } do 
 
 
 .task-board
+  = link_to t('task.order_by_end_time'), tasks_path(:order => "end_time") 
+  = link_to t('task.order_by_default'), tasks_path 
   - @tasks.each do |task|
     .post
       .topic = task.topic

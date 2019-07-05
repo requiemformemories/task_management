@@ -28,6 +28,8 @@
     delete_success: "任務刪除成功"
     delete_failed: "任務刪除失敗"
     end_time_after_start_time: "需晚於起始時間"
+    order_by_default: "預設排序"
+    order_by_end_time: "結束時間排序"
   activerecord:
     attributes: 
       task:    
