@@ -2,6 +2,7 @@ language: ruby
 rvm:
 - 2.6.3
 script:
+- cp database.travis.yml config/database.yml
 - bundle exec rake db:setup
 - bundle exec rspec
 services:
