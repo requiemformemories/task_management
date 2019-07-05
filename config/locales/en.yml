@@ -59,6 +59,8 @@ en:
     delete_success: "the task is successfully deleted."
     delete_failed: "fail to delete the task."
     end_time_after_start_time: "should be after start time"
+    order_by_default: "Order by default"
+    order_by_end_time: "Order by end time"
   activerecord:
     attributes: 
       task:   
