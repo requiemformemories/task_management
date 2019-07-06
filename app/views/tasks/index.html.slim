@@ -28,3 +28,4 @@ ul = form_for @task, :url => { :controller => 'tasks', :action => 'create' } do 
       p = link_to t("task.processing"), task_processing_path(task.taskid), method: "post" 
       p = link_to t("task.finish"),  task_finish_path(task.taskid), method: "post" 
       p = button_to t("delete"), task_path(task.taskid), :method => :delete
+  = paginate @tasks
