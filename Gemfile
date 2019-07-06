@@ -40,6 +40,7 @@ gem 'travis'
 gem 'rails-i18n'
 gem 'aasm'
 gem 'ransack'
+gem 'kaminari'
 
 group :development, :test do
   gem 'rspec'

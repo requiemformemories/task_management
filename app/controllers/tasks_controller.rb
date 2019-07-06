@@ -76,7 +76,7 @@ class TasksController < ApplicationController
 private
   def get_tasks
     @q = Task.ransack(params[:q])
-    @tasks = @q.result
+    @tasks = @q.result.page(params[:page]).per(10)
   end
 
   def task_params

@@ -2,9 +2,9 @@ require "rails_helper"
 
 RSpec.feature "searching and sorting tasks", :type => :feature do
 
-  context "verified" do  
-    let!(:task1) { Task.create(topic: "bc", priority: 2, status: "finished", end_time: "2019-01-03 09:00:00") }
-    let!(:task2) { Task.create(topic: "a", priority: 1, status: "in_progress", end_time: "2019-01-02 09:00:00") }
+  context "searching and sorting" do  
+    let!(:task1) { Task.create(topic: "bc", priority: 1, status: "finished", end_time: "2019-01-03 09:00:00") }
+    let!(:task2) { Task.create(topic: "a", priority: 2, status: "in_progress", end_time: "2019-01-02 09:00:00") }
     let!(:task3) { Task.create(topic: "c", priority: 0, status: "pending", end_time: "2019-01-01 09:00:00") }
   
     scenario 'search topics that contain "c"' do
@@ -25,10 +25,16 @@ RSpec.feature "searching and sorting tasks", :type => :feature do
     
     scenario 'order by end_time ASC' do
       visit "/tasks"
-      select(I18n.t("task.finished"), from: 'q[status_eq]')
       click_link I18n.t("task.end_time")
       topics = page.all(".topic").map(&:text)
       expect(topics).to eq ["c","a","bc"]
+    end
+    
+    scenario 'order by priority ASC' do
+      visit "/tasks"
+      click_link I18n.t("task.priority")
+      topics = page.all(".topic").map(&:text)
+      expect(topics).to eq ["c","bc","a"]
     end
   end
   
