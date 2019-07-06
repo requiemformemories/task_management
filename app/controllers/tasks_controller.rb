@@ -1,13 +1,7 @@
 class TasksController < ApplicationController
+  
   def index
-    
-    sorting = "created_at ASC"
-    case params[:order]
-    when "end_time"
-      sorting = "end_time ASC"
-    end
-    
-    @tasks = Task.order(sorting)
+    get_tasks
     @task = Task.new
   end
 
@@ -25,12 +19,10 @@ class TasksController < ApplicationController
       flash[:notice] = t("task.create_success")
       redirect_to :action => :index
     else
-      @tasks = Task.all
+      get_tasks
       render :index
       flash[:alert] = t("task.create_failed")
     end    
-
-
   end
 
   def edit
@@ -53,12 +45,39 @@ class TasksController < ApplicationController
     if @task.destroy
       flash[:notice] = t("task.delete_success")
     else
-      flash[:notice] = t("task.delete_failed")
+      flash[:alert] = t("task.delete_failed")
     end  
     redirect_to :action => :index
   end
+  
+  def processing
+    @task = Task.find_by_taskid(params[:task_id])
+    if @task.may_process?
+      @task.process!
+      flash[:notice] = t("task.process_success")
+    else
+      flash[:alert] = t("task.process_failed")
+    end
+      redirect_to :action => :index
+  end
+  
+  def finish
+    @task = Task.find_by_taskid(params[:task_id])
+    if @task.may_finish?
+      @task.finish!
+      flash[:notice] = t("task.finish_success")
+    else
+      flash[:alert] = t("task.finish_failed")
+    end
+      redirect_to :action => :index
+  end  
+  
 
 private
+  def get_tasks
+    @q = Task.ransack(params[:q])
+    @tasks = @q.result
+  end
 
   def task_params
     params.require(:task).permit(:taskid, :start_time, :end_time, :status, :priority, :topic, :content)

@@ -5,19 +5,25 @@ ul = form_for @task, :url => { :controller => 'tasks', :action => 'create' } do 
 
 
 .task-board
-  = link_to t('task.order_by_end_time'), tasks_path(:order => "end_time") 
-  = link_to t('task.order_by_default'), tasks_path 
+  = search_form_for @q do |f|
+    = render :partial => 'searchform', :locals => { :f => f }
+  br
+  = t('order')
+  = sort_link @q, :end_time, t('task.end_time'), default_order: :asc
+  = sort_link @q, :created_at, t('created_at'), default_order: :asc
   - @tasks.each do |task|
     .post
       .topic = task.topic
       p 
         = t("task.status")
-        span ：
+        | ：
         = status_text(task.status)
       p 
         = t("task.priority")
-        span ：
+        | ：
         = priority_text(task.priority)
       p = link_to t("show"), :controller => 'tasks', :action => 'show', :id => task.taskid
       p = link_to  t("edit"), :controller => 'tasks', :action => 'edit', :id => task.taskid
+      p = link_to t("task.processing"), task_processing_path(task.taskid), method: "post" 
+      p = link_to t("task.finish"),  task_finish_path(task.taskid), method: "post" 
       p = button_to t("delete"), task_path(task.taskid), :method => :delete
