@@ -11,6 +11,7 @@ ul = form_for @task, :url => { :controller => 'tasks', :action => 'create' } do 
   = t('order')
   = sort_link @q, :end_time, t('task.end_time'), default_order: :asc
   = sort_link @q, :created_at, t('created_at'), default_order: :asc
+  = sort_link @q, :priority, t('task.priority'), default_order: :asc
   - @tasks.each do |task|
     .post
       .topic = task.topic
