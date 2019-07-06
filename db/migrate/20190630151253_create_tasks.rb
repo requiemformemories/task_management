@@ -7,7 +7,7 @@ class CreateTasks < ActiveRecord::Migration[5.2]
       t.string :topic, null: false
       t.text :content
       t.integer :priority, :default => 0, null: false
-      t.integer :status, :default => 0, null: false
+      t.string :status, null: false
       t.integer :category_id
 
       t.timestamps

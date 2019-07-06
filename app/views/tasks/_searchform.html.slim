@@ -1,0 +1,6 @@
+= f.label :topic_cont
+= f.search_field :topic_cont
+br
+= f.label :status_eq
+= f.select :status_eq, options_for_select(status_options), include_blank: true 
+= f.submit

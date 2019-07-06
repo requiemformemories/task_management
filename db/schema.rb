@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_30_152000) do
+ActiveRecord::Schema.define(version: 2019_07_06_072716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 2019_06_30_152000) do
     t.integer "task_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["tag_id"], name: "index_tag_taskships_on_tag_id"
+    t.index ["task_id"], name: "index_tag_taskships_on_task_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -43,11 +45,17 @@ ActiveRecord::Schema.define(version: 2019_06_30_152000) do
     t.string "topic", null: false
     t.text "content"
     t.integer "priority", default: 0, null: false
-    t.integer "status", default: 0, null: false
+    t.string "status", null: false
     t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_tasks_on_category_id"
+    t.index ["end_time"], name: "index_tasks_on_end_time"
+    t.index ["priority"], name: "index_tasks_on_priority"
+    t.index ["start_time"], name: "index_tasks_on_start_time"
+    t.index ["status"], name: "index_tasks_on_status"
     t.index ["taskid"], name: "index_tasks_on_taskid", unique: true
+    t.index ["topic"], name: "index_tasks_on_topic"
   end
 
   create_table "user_taskships", force: :cascade do |t|
@@ -55,6 +63,8 @@ ActiveRecord::Schema.define(version: 2019_06_30_152000) do
     t.integer "task_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_user_taskships_on_task_id"
+    t.index ["user_id"], name: "index_user_taskships_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

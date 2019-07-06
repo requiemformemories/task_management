@@ -36,7 +36,7 @@ $ rails db:migrate
 |start_time |`datetime` |                     |
 |end_time   |`datetime` |                     |
 |priority   |`integer`  |required             |
-|status     |`integer`  |required             |
+|status     |`string`   |required             |
 |cat        |`string`   |                     |
 
 

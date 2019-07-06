@@ -1,12 +1,12 @@
 module TasksHelper
   def status_text(status)
     case status
-      when 0
-        return t("task.status_0")
-      when 1
-        return t("task.status_1")
-      when 2
-        return t("task.status_2")
+      when "pending"
+        return t("task.pending")
+      when "in_progress"
+        return t("task.in_progress")
+      when "finished"
+        return t("task.finished")
       else
         return ""
     end
@@ -23,5 +23,11 @@ module TasksHelper
       else
         return ""
     end    
-  end      
+  end
+  
+  def status_options
+     id = Task.aasm.states.map &:name
+     name = id.map {|e| I18n.t("task."+e.to_s) }
+     return name.zip(id).to_h
+  end  
 end

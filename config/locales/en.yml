@@ -36,6 +36,8 @@ en:
   edit: "edit"
   update: "update"
   delete: "delete"
+  order: "order"
+  created_at: "created_at"
   
   task:    
     task: "task"
@@ -44,23 +46,27 @@ en:
     start_time: "start time"
     end_time: "end time"
     status: "status"
-    status_0: "pending"
-    status_1: "in progress"
-    status_2: "finished"
+    pending: "pending"
+    in_progress: "in progress"
+    finished: "finished"
     priority: "priority"
     priority_0: "low"
     priority_1: "medium"
     priority_2: "high"
     content: "content"
+    processing: "process"
+    finish: "finish"
     create_success: "the task is successfully created."
     create_failed: "fail to create the task."
     update_success: "the task is successfully updated."
     update_failed: "fail to update the task."
     delete_success: "the task is successfully deleted."
     delete_failed: "fail to delete the task."
+    process_success: 'the status is successfully changed to "in progess".'
+    process_failed: 'fail to change the status to "in progess".'
+    finish_success: 'the status is successfully changed to "finished".'
+    finish_failed: 'fail to change the status to "finished".'
     end_time_after_start_time: "should be after start time"
-    order_by_default: "Order by default"
-    order_by_end_time: "Order by end time"
   activerecord:
     attributes: 
       task:   
