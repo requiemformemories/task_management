@@ -56,6 +56,7 @@ en:
     priority_0: "low"
     priority_1: "medium"
     priority_2: "high"
+    user: "owner"
     content: "content"
     processing: "process"
     finish: "finish"
@@ -71,7 +72,17 @@ en:
     process_failed: 'fail to change the status to "in progess".'
     finish_success: 'the status is successfully changed to "finished".'
     finish_failed: 'fail to change the status to "finished".'
+    notexist: "the task is not exists."
     end_time_after_start_time: "should be after start time"
+  user:
+    username: "username"
+    password: "password"
+    login: "login"
+    logout: "logout"
+    logged_out_notice: "You are logged out successfully."
+    not_login_notice: "You're not logged in."
+    login_success: "You are successfully logged in."
+    login_failed: "Login failed! Please check you input the correct username and password."
   activerecord:
     attributes: 
       task:   

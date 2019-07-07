@@ -37,7 +37,7 @@ $ rails db:migrate
 |end_time   |`datetime` |                     |
 |priority   |`integer`  |required             |
 |status     |`string`   |required             |
-|cat        |`string`   |                     |
+|category_id|`integer`  |                     |
 
 
 |users      |          |                      |
@@ -57,8 +57,8 @@ $ rails db:migrate
 |user_taskships|          |                      |
 |--------------|----------|----------------------|
 |id            |`integer` |primary key           |
-|user          |`string`  |required              |
-|task          |`string`  |required              |
+|user_id       |`string`  |required              |
+|task_id       |`string`  |required              |
 
 |tags       |          |                      |
 |-----------|----------|----------------------|
@@ -68,7 +68,7 @@ $ rails db:migrate
 |tag_taskships    |            |                       |
 |-----------------|------------|-----------------------|
 |id               |`integer`   |primary key            |
-|tag              |`string`    |required               |
-|task             |`string`    |required               |
+|tag_id           |`string`    |required               |
+|task_id          |`string`    |required               |
 
 

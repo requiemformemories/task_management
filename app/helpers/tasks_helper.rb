@@ -46,4 +46,11 @@ module TasksHelper
     end
   end
   
+  def users_list(task)
+    if !task.nil?
+      users_arr = task.users.map {|e| e.name}
+      return users_arr.join(', ')
+    end  
+  end
+  
 end

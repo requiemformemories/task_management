@@ -1,0 +1,13 @@
+h2.mt-3 
+  = t('user.login')
+.card.mt-3
+  .card-body
+    = form_for :session, url: login_path, method: "post" do |f| 
+      .form-group
+        = f.label :username, t('user.username')
+        = f.text_field :username, class: "form-control", required: true
+      .form-group
+        = f.label :password, t('user.password')
+        = f.password_field :password, class: "form-control", required: true
+      
+      = f.submit t('user.login'), :class => "btn btn-primary"

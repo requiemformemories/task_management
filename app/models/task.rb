@@ -7,7 +7,7 @@ class Task < ApplicationRecord
   validate :end_time_after_start_time
   belongs_to :category, optional: true
   has_many :user_taskships
-  has_many :users, :through => :user_taskships
+  has_many :users, :through => :user_taskships, :dependent => :destroy
   has_many :tag_taskships
   has_many :tags, :through => :tag_taskships
   

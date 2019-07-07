@@ -19,6 +19,16 @@
         </div>
       </li> 
     </ul>
-    
+    <ul class="navbar-nav ml-auto">
+      <% if @current_user.nil? %>
+        <li class="nav-item">
+          <a class="nav-link" href="/login"><%= t('user.login').capitalize %></a>
+        </li>
+      <% else %>  
+        <li class="nav-item">
+          <%= link_to t('user.logout'), logout_path, method: 'delete', class: "nav-link" %>
+        </li>
+      <% end %>  
+    </ul>  
   </div>
 </nav>
