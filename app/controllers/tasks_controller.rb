@@ -1,7 +1,11 @@
 class TasksController < ApplicationController
+  before_action :authorize, :current_user
+  before_action :get_tasks, :only => :index
+  before_action :get_task, :only => [:show, :edit, :update, :processing, :finish]
+  
+  
   
   def index
-    get_tasks
     @task = Task.new
   end
 
@@ -15,7 +19,8 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-    if @task.save
+    if @task.save and @current_user
+      UserTaskship.create( :user => @current_user, :task => @task )
       flash[:notice] = t("task.create_success")
       redirect_to :action => :index
     else
@@ -51,7 +56,6 @@ class TasksController < ApplicationController
   end
   
   def processing
-    @task = Task.find_by_taskid(params[:task_id])
     if @task.may_process?
       @task.process!
       flash[:notice] = t("task.process_success")
@@ -62,7 +66,6 @@ class TasksController < ApplicationController
   end
   
   def finish
-    @task = Task.find_by_taskid(params[:task_id])
     if @task.may_finish?
       @task.finish!
       flash[:notice] = t("task.finish_success")
@@ -75,8 +78,16 @@ class TasksController < ApplicationController
 
 private
   def get_tasks
-    @q = Task.ransack(params[:q])
+    @q = @current_user.tasks.includes(:users).ransack(params[:q])
     @tasks = @q.result.page(params[:page]).per(10)
+  end
+  
+  def get_task
+    id =  params[:id] || params[:task_id]
+    @task = @current_user.tasks.find_by_taskid(id)
+    if @task.nil?
+      redirect_to tasks_path, alert: t('task.notexist')
+    end
   end
 
   def task_params

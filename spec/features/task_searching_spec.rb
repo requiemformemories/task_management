@@ -3,9 +3,19 @@ require "rails_helper"
 RSpec.feature "searching and sorting tasks", :type => :feature do
 
   context "searching and sorting" do  
+    let!(:user) { User.create(:name => "name", :username => "username", :password => "secr**", :password_confirmation => "secr**",:role => 0) }
     let!(:task1) { Task.create(topic: "bc", priority: 1, status: "finished", end_time: "2019-01-03 09:00:00") }
     let!(:task2) { Task.create(topic: "a", priority: 2, status: "in_progress", end_time: "2019-01-02 09:00:00") }
     let!(:task3) { Task.create(topic: "c", priority: 0, status: "pending", end_time: "2019-01-01 09:00:00") }
+    let!(:task4) { Task.create(topic: "c", priority: 0, status: "pending", end_time: "2019-01-01 09:00:00") }
+    let!(:ship1) { UserTaskship.create(user: user, task: task1) }
+    let!(:ship2) { UserTaskship.create(user: user, task: task2) }
+    let!(:ship3) { UserTaskship.create(user: user, task: task3) }
+    
+    before :each do
+      visit '/login'
+      login user.username, user.password
+    end
   
     scenario 'search topics that contain "c"' do
       visit "/tasks"
@@ -38,4 +48,12 @@ RSpec.feature "searching and sorting tasks", :type => :feature do
     end
   end
   
-end  
+end 
+
+private
+
+def login(username, password)
+  fill_in I18n.t('user.username'), with: username
+  fill_in I18n.t('user.password'), with: password
+  click_button I18n.t('user.login')
+end
