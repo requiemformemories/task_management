@@ -6,7 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'io/console'
-
 if User.any?
   STDOUT.puts "\e[31mThe first user already exists. You may have already seed the database.\e[0m"
   return 0
