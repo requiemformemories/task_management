@@ -30,7 +30,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  application_title: "Task Management"
   back_to_index: "Back to Index"
+  cancel: "cancel"
   create: "create"
   show: "show"
   edit: "edit"
@@ -38,7 +40,8 @@ en:
   delete: "delete"
   order: "order"
   created_at: "created_at"
-  
+  language: 'language'
+  default_order: "default order"
   task:    
     task: "task"
     tasks: "tasks"
@@ -56,6 +59,8 @@ en:
     content: "content"
     processing: "process"
     finish: "finish"
+    new_task: "New Task"
+    edit_task: "Edit Task"
     create_success: "the task is successfully created."
     create_failed: "fail to create the task."
     update_success: "the task is successfully updated."

@@ -1,31 +1,52 @@
 
-ul = form_for @task, :url => { :controller => 'tasks', :action => 'create' } do |f|
-  = render :partial => 'form', :locals => { :f => f }
-  li = f.submit t("create")
+.card.mt-3
+  .card-body
+    h3 = t('task.new_task')
+    = form_for @task, :url => { :controller => 'tasks', :action => 'create' } do |f|
+      = render :partial => 'form', :locals => { :f => f }
+      = f.submit t("create"), class: "btn btn-primary"
 
 
-.task-board
-  = search_form_for @q do |f|
-    = render :partial => 'searchform', :locals => { :f => f }
-  br
-  = t('order')
-  = sort_link @q, :end_time, t('task.end_time'), default_order: :asc
-  = sort_link @q, :created_at, t('created_at'), default_order: :asc
-  = sort_link @q, :priority, t('task.priority'), default_order: :asc
-  - @tasks.each do |task|
-    .post
-      .topic = task.topic
-      p 
-        = t("task.status")
-        | ：
-        = status_text(task.status)
-      p 
-        = t("task.priority")
-        | ：
-        = priority_text(task.priority)
-      p = link_to t("show"), :controller => 'tasks', :action => 'show', :id => task.taskid
-      p = link_to  t("edit"), :controller => 'tasks', :action => 'edit', :id => task.taskid
-      p = link_to t("task.processing"), task_processing_path(task.taskid), method: "post" 
-      p = link_to t("task.finish"),  task_finish_path(task.taskid), method: "post" 
-      p = button_to t("delete"), task_path(task.taskid), :method => :delete
+.tasks-board
+  h2.pb-2.mt-4.mb-3.border-bottom = t('task.tasks')   
+  
+  .card.mb-3
+    .card-body
+      = search_form_for @q , class:"my-2 my-lg-0" do |f|
+        = render :partial => 'searchform', :locals => { :f => f }
+  
+  table.table
+    thead
+      tr
+        th scope="col"
+          = sort_link @q, :created_at, '#', default_order: :asc
+        th scope="col"
+          = sort_link @q, :topic, t('task.topic'), default_order: :asc
+        th scope="col"
+          = sort_link @q, :start_time, t('task.start_time'), default_order: :asc
+        th scope="col"
+          = sort_link @q, :end_time, t('task.end_time'), default_order: :asc
+        th scope="col"
+          = sort_link @q, :status, t('task.status'), default_order: :asc
+        th scope="col"
+          = sort_link @q, :priority, t('task.priority'), default_order: :asc
+        th scope="col"
+    tbody
+      - @tasks.each do |task|
+        tr
+          td = task.id
+          td.topic = task.topic
+          td = task.start_time.nil? ? "" : I18n.l(task.start_time, :format => :short)
+          td = task.end_time.nil? ? "" : I18n.l(task.end_time, :format => :short)
+          td = status_text(task.status)
+          td = priority_text(task.priority)
+          td
+            .row
+              .btn-group.mb-1
+                = link_to t("show"), {:controller => 'tasks', :action => 'show', :id => task.taskid}, :class => "btn btn-light"
+                = link_to t("edit"), {:controller => 'tasks', :action => 'edit', :id => task.taskid}, :class => "btn btn-light"
+                = task_aasm_link(task)
+            .row
+              .btn-group.mb-2
+                = button_to t("delete"), task_path(task.taskid), :method => :delete,:class => "btn btn-dark"
   = paginate @tasks

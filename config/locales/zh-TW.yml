@@ -1,5 +1,7 @@
 "zh-TW":
+  application_title: "任務管理"
   back_to_index: "回首頁"
+  cancel: "取消"
   create: "新增"
   show: "展開"
   edit: "修改"
@@ -7,7 +9,7 @@
   delete: "刪除"
   order: "排序"
   created_at: "新增時間"
-
+  language: '語言'
   helpers:
     page_entries_info:
       more_pages:
@@ -41,6 +43,8 @@
     content: "內容"
     processing: "處理中"
     finish: "完成"
+    new_task: "新增任務"
+    edit_task: "修改任務"
     create_success: "任務新增成功"
     create_failed: "任務新增失敗"
     update_success: "任務修改成功"

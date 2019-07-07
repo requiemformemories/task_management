@@ -1,9 +1,7 @@
-p style="color: green" 
-  = flash[:notice] 
-p style="color: red" 
-  = flash[:alert] 
-
-= form_for @task, :url => { :controller => 'tasks', :action => 'update', :id => @task.taskid } do |f|
-  ul
-    = render :partial => 'form', :locals => { :f => f } 
-    li = f.submit t("update") 
+.card.mb-3
+  .card-body
+    h3 = t('task.edit_task')
+    = form_for @task, :url => { :controller => 'tasks', :action => 'update', :id => @task.taskid } do |f|
+      = render :partial => 'form', :locals => { :f => f } 
+      = f.submit t("update"), class: "btn btn-primary mr-1" 
+      = link_to t("cancel"), {:controller => 'tasks', :action => 'index'}, class: "btn btn-light mr-1"

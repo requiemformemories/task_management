@@ -12,8 +12,8 @@ RSpec.feature "managing tasks", :type => :feature do
     end
     click_button I18n.t("create")
     click_link I18n.t("show")
-    expect(page).to have_content '2019-01-01 09:00:00'
-    expect(page).to have_content '2019-02-01 18:00:00'
+    expect(page).to have_content '01月01日 09:00'
+    expect(page).to have_content '02月01日 18:00'
   end
   
   scenario "init a pending task" do

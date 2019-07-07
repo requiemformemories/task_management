@@ -30,4 +30,20 @@ module TasksHelper
      name = id.map {|e| I18n.t("task."+e.to_s) }
      return name.zip(id).to_h
   end  
+  
+  def priority_options
+    return [[t('task.priority_0'), 0], [t('task.priority_1'), 1], [t('task.priority_2'), 2]]
+  end 
+  
+  def task_aasm_link(task)
+    case task.status
+      when "pending"
+        return link_to t("task.processing"), task_processing_path(task.taskid), method: "post", class: "btn btn-primary" 
+      when "in_progress"
+        return link_to t("task.finish"),  task_finish_path(task.taskid), method: "post", class: "btn btn-success"  
+      else
+        return ""
+    end
+  end
+  
 end

@@ -1,15 +1,27 @@
 - if @task.errors.any?
-      ul
-      - @task.errors.full_messages.each do |msg|
-        li = msg
+  - @task.errors.full_messages.each do |msg|
+    .alert.alert-warning role="alert"    
+      = msg
 
-li = f.label :topic, t("task.topic") 
-li = f.text_field :topic 
-li = f.label :start_time, t("task.start_time") 
-li = f.datetime_field :start_time 
-li = f.label :end_time, t("task.end_time") 
-li = f.datetime_field :end_time
-li = f.label :priority, t("task.priority")
-li = f.select :priority, [[t('task.priority_0'), 0], [t('task.priority_1'), 1], [t('task.priority_2'), 2]]
-li = f.label :content, t("task.content")
-li = f.text_area :content
+.form-group.row
+  = f.label :topic, t("task.topic"), class: "col-sm-2 col-form-label" 
+  .col-sm-10
+    = f.text_field :topic, class: "form-control", required: true
+.form-group.row  
+  .col-lg
+    .row.mb-2
+      = f.label :start_time, t("task.start_time"), class: "col-sm-3 col-form-label" 
+      .col-sm-9
+        = f.datetime_field :start_time, class: "form-control" 
+  .col-lg
+    .row.mb-2
+      = f.label :end_time, t("task.end_time"), class: "col-sm-3 col-form-label" 
+      .col-sm-9
+        = f.datetime_field :end_time, class: "form-control"
+.form-group.row 
+  = f.label :priority, t("task.priority"), class: "col-sm-2 col-form-label" 
+  .col-sm-10
+    = f.select :priority, priority_options, {}, class: "form-control"
+.form-group
+  = f.label :content, t("task.content"), class: "col-form-label" 
+  = f.text_area :content, class: "form-control"

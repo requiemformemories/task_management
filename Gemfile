@@ -41,6 +41,9 @@ gem 'rails-i18n'
 gem 'aasm'
 gem 'ransack'
 gem 'kaminari'
+gem 'sprockets-rails'
+gem 'bootstrap', '~> 4.3.1'
+gem 'jquery-rails'
 
 group :development, :test do
   gem 'rspec'
