@@ -1,24 +1,31 @@
-
-h3 = @task.topic
-p 
-  = t("task.status")
-  span ：
-  = status_text(@task.status)
-p 
-  = t("task.priority")
-  span ：
-  = priority_text(@task.priority)
-p 
-  = t("task.start_time")
-  span ：  
-  = @task.start_time
-p 
-  = t("task.end_time")
-  span ：  
-p = @task.end_time
-p 
-  = t("task.content")
-  span ：
-p = simple_format(@task.content)
-
-p = link_to t("back_to_index"), :controller => 'tasks', :action => 'index' 
+.card.mt-3
+  .card-body
+    h3 = @task.topic
+  table.table
+    tbody
+      tr
+        td 
+          = t("task.start_time")
+        td = @task.start_time.nil? ? "" : I18n.l(@task.start_time, :format => :short)
+      tr
+        td 
+          = t("task.end_time")
+        td = @task.end_time.nil? ? "" : I18n.l(@task.end_time, :format => :short)
+      tr 
+        td 
+          = t("task.status")
+        td = status_text(@task.status)
+      tr
+        td 
+          = t("task.priority")
+        td = priority_text(@task.priority)
+      
+      tr
+        td 
+          = t("task.content")
+        td = simple_format(@task.content)
+  .card-body  
+    .row
+      = link_to t("edit"), {:controller => 'tasks', :action => 'edit', :id => @task.taskid}, :class => "btn btn-light mr-1"
+      = button_to t("delete"), task_path(@task.taskid), :method => :delete,:class => "btn btn-dark mr-1"
+      = link_to t("back_to_index"), {:controller => 'tasks', :action => 'index'}, class: "btn btn-primary mr-1"

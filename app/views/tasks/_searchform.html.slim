@@ -1,6 +1,15 @@
-= f.label :topic_cont
-= f.search_field :topic_cont
-br
-= f.label :status_eq
-= f.select :status_eq, options_for_select(status_options), include_blank: true 
-= f.submit
+.row.form-group
+  .col-md
+    = f.label :topic_cont, class: "col-form-label"
+    = f.search_field :topic_cont, class: "form-control"
+  .col-md
+    = f.label :status, class: "col-form-label"
+    = f.select :status_eq, options_for_select(status_options), {include_blank: true}, {class: "form-control"}
+  .col-md
+    = f.label :priority, class: "col-form-label"
+    = f.select :priority_eq, options_for_select(priority_options), {include_blank: true}, {class: "form-control"}
+  .col-md    
+    .col-form-label 
+      | 　
+    .mr-sm-2
+      = f.submit class: "btn btn-outline-success"

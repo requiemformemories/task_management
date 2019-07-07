@@ -7,14 +7,21 @@ html
 
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-
   body
-    .language
-      = link_to "中文版", :controller => 'tasks', :action => 'index', :locale => "zh-TW"
-      = link_to "English", :controller => 'tasks', :action => 'index', :locale => "en" 
-    
-    p style="color: green" 
-    = flash[:notice] 
-    p style="color: red" 
-    = flash[:alert]  
-    = yield
+    = render 'shared/header'
+    .container
+      - if flash[:notice]
+        .alert.alert-success.mt-2 role="alert"
+          = flash[:notice] 
+          button.close type="button" data-dismiss="alert" aria-label="Close"
+            span aria-hidden="true" 
+              | &times;
+      
+      - if flash[:alert]
+        .alert.alert-danger.mt-2 role="alert"
+          = flash[:alert] 
+          button.close type="button" data-dismiss="alert" aria-label="Close"
+            span aria-hidden="true" 
+              | &times;   
+              
+      = yield
