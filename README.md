@@ -40,14 +40,14 @@ $ rails db:migrate
 |category_id|`integer`  |                     |
 
 
-|users      |          |                      |
-|-----------|----------|----------------------|
-|id         |`integer` |primary key           |
-|uid        |`string`  |required, unique      |
-|name       |`string`  |required              |
-|username   |`string`  |required, unique      |
-|passwd     |`string`  |required              |
-|role       |`integer` |required              |
+|users          |          |                      |
+|---------------|----------|----------------------|
+|id             |`integer` |primary key           |
+|uid            |`string`  |required, unique      |
+|name           |`string`  |required              |
+|username       |`string`  |required, unique      |
+|password_digest|`string`  |required              |
+|role           |`integer` |required              |
 
 |categories |           |                     |
 |-----------|-----------|---------------------|

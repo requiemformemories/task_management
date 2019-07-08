@@ -1,0 +1,15 @@
+.row.form-group
+  .col-md
+    = f.label :name_cont, class: "col-form-label"
+    = f.search_field :name_cont, class: "form-control"
+  .col-md
+    = f.label :username_cont, class: "col-form-label"
+    = f.search_field :username_cont, class: "form-control"
+  .col-md
+    = f.label :role, class: "col-form-label"
+    = f.select :role_eq, options_for_select(role_options), {include_blank: true}, {class: "form-control"}
+  .col-md    
+    .col-form-label 
+      | 　
+    .mr-sm-2
+      = f.submit class: "btn btn-outline-success"

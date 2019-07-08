@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
   before_validation :generate_id, on: :create
+  before_destroy :delete_check
   
   validates_presence_of :uid, :name, :username, :role
   validates_uniqueness_of :uid, :username
@@ -9,8 +10,39 @@ class User < ApplicationRecord
   has_many :user_taskships
   has_many :tasks, :through => :user_taskships
   
+  def admin?
+    self.role == 9
+  end
+  
+  def role_name
+    case self.role
+      when 0
+        return I18n.t("user.role0")
+      when 9
+        return I18n.t("user.role9")
+      else
+        return ""
+    end    
+  end
+  
   private
   def generate_id
     self.uid = SecureRandom.uuid
+  end
+  
+  def delete_check
+    if !check_last_admin
+      self.errors.messages[:role] = I18n.t('user.need_last_admin')
+    end
+    
+    delete_tasks  
+  end  
+  
+  def delete_tasks
+    self.tasks.destroy_all
+  end  
+  
+  def check_last_admin
+    User.where(role: 9).count > 1
   end
 end

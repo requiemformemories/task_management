@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def new
-    if !session[:user_id].nil?
+    if !@current_user.nil?
       redirect_to root_url
     end
   end

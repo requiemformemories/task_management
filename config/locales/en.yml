@@ -75,14 +75,33 @@ en:
     notexist: "the task is not exists."
     end_time_after_start_time: "should be after start time"
   user:
+    user: "user"
+    users: "users"
+    name: "name"
     username: "username"
     password: "password"
+    confirmation: "confirmation"
+    role: "role"
+    role0: "default user"
+    role9: "admin"
     login: "login"
     logout: "logout"
+    new_user: "new user"
+    edit_user: "edit user"
+    edit_password: "edit password"
+    admin_page: "Admin Dashboard"
     logged_out_notice: "You are logged out successfully."
     not_login_notice: "You're not logged in."
+    auth_failed: 'the page is not exists or you do not have the right to visit it.'
     login_success: "You are successfully logged in."
     login_failed: "Login failed! Please check you input the correct username and password."
+    create_success: "the user is successfully created."
+    create_failed: "fail to create the user."
+    update_success: "the user is successfully updated."
+    update_failed: "fail to update the user."
+    delete_success: "the user is successfully deleted."
+    delete_failed: "fail to delete the user."
+    need_last_admin: "You cannot delete the last admin."
   activerecord:
     attributes: 
       task:   
@@ -92,4 +111,9 @@ en:
         status: "status"
         priority: "priority"
         content: "content"
-      
+      user:
+        name: "name"
+        username: "username"
+        password: "password"
+        password_confirmation: "password confirmation"
+        role: "role"
