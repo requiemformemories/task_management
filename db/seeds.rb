@@ -11,11 +11,11 @@ if User.any?
   return 0
 end 
 STDOUT.puts "Now let's generate the first user.\nPlease input your username:"
-username = STDIN.gets
+username = STDIN.gets.chomp
 
 get_pw = false
 begin
-  STDOUT.puts "Your username will be \e[32m#{username}\e[0m Please input your password:"
+  STDOUT.puts "Your username will be \e[32m#{username}\e[0m . Please input your password:"
   password = STDIN.noecho(&:gets).chomp
   STDOUT.puts "Please input your password again:"
   password_twice = STDIN.noecho(&:gets).chomp

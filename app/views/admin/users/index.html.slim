@@ -1,0 +1,38 @@
+.users-board
+  h2.pb-2.mt-4.mb-3.border-bottom = t('user.users').capitalize   
+  
+  .card.mb-3
+    .card-body
+      = search_form_for @q, url: admin_users_path, class:"my-2 my-lg-0" do |f|
+        = render :partial => 'searchform', :locals => { :f => f }
+  
+  table.table
+    thead
+      tr
+        th scope="col"
+          = sort_link @q, :created_at, '#', default_order: :asc
+        th scope="col"
+          = sort_link @q, :username, t('user.username'), default_order: :asc
+        th scope="col"
+          = sort_link @q, :name, t('user.name'), default_order: :asc
+        th scope="col"
+          = sort_link @q, :role, t('user.role'), default_order: :asc
+        th scope="col"
+          = t('task.tasks')
+        th scope="col"  
+          = link_to t("user.new_user"), {:controller => 'admin/users', :action => 'new'}, class: "btn btn-primary"
+    tbody
+      - @users.each do |user|
+        tr
+          td = user.id
+          td = user.name
+          td = user.username
+          td = user.role_name
+          td = user.tasks.size
+          td
+            .row
+              = link_to t("show"), {:controller => 'admin/users', :action => 'show', :id => user.uid}, :class => "btn btn-light mr-1"
+              = link_to t("edit"), {:controller => 'admin/users', :action => 'edit', :id => user.uid}, :class => "btn btn-light mr-1"
+              = link_to t("user.edit_password"), admin_user_password_edit_path(user_id: user.uid), :class => "btn btn-light mr-1"
+              = link_to t("delete"), admin_user_path(user.uid), :method => :delete, :class => "btn btn-dark mr-1"
+  = paginate @users

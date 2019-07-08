@@ -11,4 +11,11 @@ Rails.application.routes.draw do
     post 'processing' => "tasks#processing"
     post 'finish' => "tasks#finish"
   end
+  
+  namespace :admin do
+    resources :users do
+      get 'password_edit'
+      patch 'password_update' 
+    end
+  end
 end

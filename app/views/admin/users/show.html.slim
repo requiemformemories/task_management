@@ -1,0 +1,44 @@
+.card.mt-3
+  .card-body
+    h3 = t('user.user')
+  table.table
+    tbody
+      tr
+        td = t("user.username")
+        td = @user.username
+      tr
+        td = t("user.name")
+        td = @user.name
+      tr
+        td = t("user.role")
+        td = @user.role_name
+  .card-body  
+    .row
+      = link_to t("edit"), {:controller => 'admin/users', :action => 'edit', :id => @user.uid}, :class => "btn btn-light mr-1"
+      = button_to t("delete"), admin_user_path(@user.uid), :method => :delete,:class => "btn btn-dark mr-1"
+      = link_to t("back_to_index"), {:controller => 'admin/users', :action => 'index'}, class: "btn btn-primary mr-1"      
+
+.card.mt-3
+  .card-body
+    h3 = t('task.tasks')
+  table.table         
+    thead
+      tr
+        th scope="col"
+          = t('task.topic')
+        th scope="col"
+          = t('task.start_time')
+        th scope="col"
+          = t('task.end_time')
+        th scope="col"
+          = t('task.status')
+        th scope="col"
+          = t('task.priority')
+    tbody    
+      - @user.tasks.each do |task|
+        tr
+          td = task.topic
+          td = task.start_time.nil? ? "" : I18n.l(task.start_time, :format => :short)
+          td = task.end_time.nil? ? "" : I18n.l(task.end_time, :format => :short)
+          td = status_text(task.status)
+          td = priority_text(task.priority)

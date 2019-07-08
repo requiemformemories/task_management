@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   before_action :authorize, :current_user
   before_action :get_tasks, :only => :index
-  before_action :get_task, :only => [:show, :edit, :update, :processing, :finish]
+  before_action :get_task, :only => [:show, :edit, :update, :delete, :processing, :finish]
   
   
   
@@ -10,7 +10,6 @@ class TasksController < ApplicationController
   end
 
   def show
-    @task = Task.find_by_taskid(params[:id])
   end
 
   # def new
@@ -31,11 +30,9 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @task = Task.find_by_taskid(params[:id])
   end
 
   def update
-    @task = Task.find_by_taskid(params[:id])
     if @task.update(task_params)
       flash[:notice] = t("task.update_success")
       redirect_to :action => :index
@@ -46,7 +43,6 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task = Task.find_by_taskid(params[:id])
     if @task.destroy
       flash[:notice] = t("task.delete_success")
     else

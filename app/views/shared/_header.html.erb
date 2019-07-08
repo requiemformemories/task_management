@@ -14,8 +14,8 @@
           <%= t('language') %>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <%= link_to "中文版", {:controller => 'tasks', :action => 'index', :locale => "zh-TW"}, {:class => "dropdown-item"} %>
-          <%= link_to "English", {:controller => 'tasks', :action => 'index', :locale => "en"}, {:class => "dropdown-item"} %>
+          <%= link_to "中文版", {:controller => controller_name, :action => action_name, :locale => "zh-TW"}, {:class => "dropdown-item"} %>
+          <%= link_to "English", {:controller => controller_name, :action => action_name, :locale => "en"}, {:class => "dropdown-item"} %>
         </div>
       </li> 
     </ul>
@@ -25,6 +25,9 @@
           <a class="nav-link" href="/login"><%= t('user.login').capitalize %></a>
         </li>
       <% else %>  
+        <% if @current_user.admin? %>
+          <%= link_to t('user.admin_page'), admin_users_path, class: "nav-link" %>
+        <% end %>
         <li class="nav-item">
           <%= link_to t('user.logout'), logout_path, method: 'delete', class: "nav-link" %>
         </li>

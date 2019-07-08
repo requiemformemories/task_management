@@ -1,0 +1,26 @@
+- if @user.errors.any?
+  - @user.errors.full_messages.each do |msg|
+    .alert.alert-warning role="alert"    
+      = msg
+
+.form-group.row  
+  = f.label :name, t("user.name"), class: "col-sm-2 col-form-label" 
+  .col-sm-10
+    = f.text_field :name, class: "form-control", required: true
+.form-group.row 
+  = f.label :username, t("user.username"), class: "col-sm-2 col-form-label" 
+  .col-sm-10
+    = f.text_field :username, class: "form-control", required: true
+- if action_name == "new"    
+  .form-group.row  
+    = f.label :password, t("user.password"), class: "col-sm-2 col-form-label" 
+    .col-sm-10
+      = f.password_field :password, class: "form-control"
+  .form-group.row
+    = f.label :password_confirmation, t("user.confirmation"), class: "col-sm-2 col-form-label" 
+    .col-sm-10
+      = f.password_field :password_confirmation, class: "form-control"
+.form-group.row  
+      = f.label :role, t("user.role"), class: "col-sm-2 col-form-label" 
+      .col-sm-10
+        = f.select :role, options_for_select(role_options, @user.role), {}, class: "form-control"    
