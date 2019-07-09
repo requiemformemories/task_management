@@ -52,5 +52,4 @@ module TasksHelper
       return users_arr.join(', ')
     end  
   end
-  
 end

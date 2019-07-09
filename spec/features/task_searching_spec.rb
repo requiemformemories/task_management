@@ -33,6 +33,18 @@ RSpec.feature "searching and sorting tasks", :type => :feature do
       expect(topics).to eq ["bc"]
     end
     
+    scenario 'search tasks which tags include "aaa"' do
+      task1.insert_tags("aaa,bbb,ccc")
+      task2.insert_tags("bbb,ccc,ddd")
+      task3.insert_tags("ccc,ddd,eee")
+      task4.insert_tags("aaa,bbb,ccc")
+      
+      visit "/tasks"
+      click_link "bbb(2)"
+      topics = page.all(".topic").map(&:text)
+      expect(topics).to eq ["bc","a"]
+    end
+    
     scenario 'order by end_time ASC' do
       visit "/tasks"
       click_link I18n.t("task.end_time")

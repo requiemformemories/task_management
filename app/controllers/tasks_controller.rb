@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :authorize, :current_user
   before_action :get_tasks, :only => :index
   before_action :get_task, :only => [:show, :edit, :update, :delete, :processing, :finish]
-  
+  before_action :get_search_tags, :only => :index
   
   
   def index
@@ -20,6 +20,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     if @task.save and @current_user
       UserTaskship.create( :user => @current_user, :task => @task )
+      @task.insert_tags(params[:task][:all_tags])
       flash[:notice] = t("task.create_success")
       redirect_to :action => :index
     else
@@ -34,6 +35,7 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
+      @task.insert_tags(params[:task][:all_tags])
       flash[:notice] = t("task.update_success")
       redirect_to :action => :index
     else
@@ -74,7 +76,11 @@ class TasksController < ApplicationController
 
 private
   def get_tasks
-    @q = @current_user.tasks.includes(:users).ransack(params[:q])
+    @q = @current_user.tasks
+    if params[:tag]
+      @q = @q.tagged_with(params[:tag])
+    end
+    @q = @q.includes(:users).ransack(params[:q])
     @tasks = @q.result.page(params[:page]).per(10)
   end
   
@@ -84,6 +90,11 @@ private
     if @task.nil?
       redirect_to tasks_path, alert: t('task.notexist')
     end
+  end
+  
+  def get_search_tags
+    #@search_tags = Tag.select("tagname,count(tasks.id) as count").joins(:tasks).group("tags.id").limit(20)
+    @search_tags = Task.select("tagname,count(tasks.id) as count").joins(:tags, :users).where("users.id" => @current_user).group("tags.id").limit(20)
   end
 
   def task_params

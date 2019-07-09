@@ -34,6 +34,8 @@
           = t('task.status')
         th scope="col"
           = t('task.priority')
+        th scope="col"
+          = t('tag.tags')  
     tbody    
       - @user.tasks.each do |task|
         tr
@@ -42,3 +44,7 @@
           td = task.end_time.nil? ? "" : I18n.l(task.end_time, :format => :short)
           td = status_text(task.status)
           td = priority_text(task.priority)
+          td 
+            - task.all_tags.split(",").each do |tag|
+              = link_to tag.strip, tasks_path(tag: tag.strip)
+              |  

@@ -102,6 +102,10 @@ en:
     delete_success: "the user is successfully deleted."
     delete_failed: "fail to delete the user."
     need_last_admin: "You cannot delete the last admin."
+  tag: 
+    tag: "tag"
+    tags: "tags"
+    separated_with_comma: 'please separated with comma'
   activerecord:
     attributes: 
       task:   

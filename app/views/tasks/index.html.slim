@@ -14,6 +14,12 @@
     .card-body
       = search_form_for @q , class:"my-2 my-lg-0" do |f|
         = render :partial => 'searchform', :locals => { :f => f }
+        hr
+        = t('tag.tags')
+        |  :  
+        - @search_tags.each do |tag|
+          = link_to "#{tag.tagname}(#{tag.count})", tasks_path(tag: tag.tagname)
+          |  
   
   table.table
     thead
@@ -31,6 +37,8 @@
         th scope="col"
           = sort_link @q, :priority, t('task.priority'), default_order: :asc
         th scope="col"
+          = t('tag.tags')
+        th scope="col"
     tbody
       - @tasks.each do |task|
         tr
@@ -40,6 +48,10 @@
           td = task.end_time.nil? ? "" : I18n.l(task.end_time, :format => :short)
           td = status_text(task.status)
           td = priority_text(task.priority)
+          td 
+            - task.all_tags.split(",").each do |tag|
+              = link_to tag.strip, tasks_path(tag: tag.strip)
+              |  
           td
             .row
               .btn-group.mb-1

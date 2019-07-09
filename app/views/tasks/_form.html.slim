@@ -19,9 +19,16 @@
       .col-sm-9
         = f.datetime_field :end_time, class: "form-control"
 .form-group.row 
-  = f.label :priority, t("task.priority"), class: "col-sm-2 col-form-label" 
-  .col-sm-10
-    = f.select :priority, priority_options, {}, class: "form-control"
+  .col-lg
+    .row.mb-2
+      = f.label :priority, t("task.priority"), class: "col-sm-3 col-form-label" 
+      .col-sm-9
+        = f.select :priority, priority_options, {}, class: "form-control"
+  .col-lg
+    .row.mb-2
+      = f.label :all_tags, t("tag.tags"), class: "col-sm-3 col-form-label" 
+      .col-sm-9
+        = f.text_field :all_tags, class: "form-control", placeholder: t("tag.separated_with_comma")
 .form-group
   = f.label :content, t("task.content"), class: "col-form-label" 
   = f.text_area :content, class: "form-control"

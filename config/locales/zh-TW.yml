@@ -85,6 +85,10 @@
     update_failed: "使用者修改失敗"
     delete_success: "使用者刪除成功"
     need_last_admin: "不可刪除最後一位管理者"
+  tag: 
+    tag: "標籤"
+    tags: "標籤"
+    separated_with_comma: '請用 "," 把標籤隔開'    
   activerecord:
     attributes: 
       task:    
