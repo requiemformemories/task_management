@@ -21,6 +21,12 @@
       tr
         td = t("task.content")
         td = simple_format(@task.content)
+      tr
+        td = t('tag.tags')
+        td 
+          - @task.all_tags.split(",").each do |tag|
+            = link_to tag.strip, tasks_path(tag: tag.strip)
+            |  
   .card-body  
     .row
       = link_to t("edit"), {:controller => 'tasks', :action => 'edit', :id => @task.taskid}, :class => "btn btn-light mr-1"

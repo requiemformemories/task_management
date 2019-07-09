@@ -31,6 +31,20 @@ class Task < ApplicationRecord
       end
     end
   end
+  
+  def insert_tags(tags)
+    self.tags = tags.split(",").map do |name|
+        Tag.where(tagname: name.strip).first_or_create!
+    end
+  end
+
+  def all_tags
+    self.tags.map(&:tagname).join(", ")
+  end
+  
+  def self.tagged_with(tagname)
+    self.joins(:tags).where("tags.tagname" => tagname)
+  end
 
   private
   def generate_id

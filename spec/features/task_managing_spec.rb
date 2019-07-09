@@ -92,6 +92,18 @@ RSpec.feature "managing tasks", :type => :feature do
       click_link I18n.t("show")
       expect(page).to have_content I18n.t("task.priority_2")
     end 
+    
+    scenario "tags: aaa, bbb, ccc" do
+      visit "/tasks"
+      within("form#new_task") do
+        fill_in "task[topic]", :with => "task with tags"
+        fill_in "task[all_tags]", :with => "aaa, bbb, ccc"
+      end
+      click_button I18n.t("create")
+      expect(page).to have_link("aaa")
+      expect(page).to have_link("bbb")
+      expect(page).to have_link("ccc")
+    end 
   end  
 end
 
