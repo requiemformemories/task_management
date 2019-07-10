@@ -1,5 +1,1 @@
-.row
-  .m-auto
-    h1.mt-5.display-3 404: Page not found
-    p.lead.text-secondary = t('errors.404') 
-    = link_to t('back_to_index'), root_path, class: "btn btn-primary"
+= render :partial => 'template', :locals => { title: "404: Page not found", text: t('errors.404') } 

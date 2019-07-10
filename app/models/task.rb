@@ -45,6 +45,58 @@ class Task < ApplicationRecord
   def self.tagged_with(tagname)
     self.joins(:tags).where("tags.tagname" => tagname)
   end
+  
+  def status_name
+    case self.status
+      when "pending"
+        return I18n.t("task.pending")
+      when "in_progress"
+        return I18n.t("task.in_progress")
+      when "finished"
+        return I18n.t("task.finished")
+      else
+        return ""
+    end
+  end  
+  
+  def status_color
+    case self.status
+      when "pending"
+        return "text-secondary"
+      when "in_progress"
+        return "text-info"
+      when "finished"
+        return "text-primary"
+      else
+        return ""
+    end
+  end
+  
+  def priority_name
+    case self.priority
+      when 0
+        return I18n.t("task.priority_0")
+      when 1
+        return I18n.t("task.priority_1")
+      when 2
+        return I18n.t("task.priority_2")
+      else
+        return ""
+    end    
+  end  
+  
+  def priority_color
+    case self.priority
+      when 0
+        return "text-success"
+      when 1
+        return "text-warning"
+      when 2
+        return "text-danger"
+      else
+        return ""
+    end
+  end
 
   private
   def generate_id

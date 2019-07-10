@@ -2,8 +2,9 @@
   .row.justify-content-md-center
     .col.col-md-8
       h1.mt-5.display-3 = t('application_title')
-      p.lead.text-secondary = t('application_description') 
-      = link_to t('user.login'), login_path, class: "btn btn-primary"
+      p.lead.text-secondary = t('application_description')
+      - if @current_user.nil?
+        = link_to t('user.login'), login_path, class: "btn btn-primary"
 .container-fluid.index-content1.pb-5
   .row.justify-content-md-center
     .col-md-auto.text-center.mb-5
