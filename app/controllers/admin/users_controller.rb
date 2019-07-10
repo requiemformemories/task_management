@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-  before_action :authorize, :current_user
+  before_action :authorize
   before_action :get_users, :only => :index
   before_action :get_user, :only => [:show, :edit, :update, :destroy, :password_edit, :password_update]
   

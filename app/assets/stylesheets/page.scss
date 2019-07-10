@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .index-header{
-  background-image: url("/assets/index_head.jpg");
+  background-image: image-url("index_head.jpg");
   background-position: right bottom;
   background-size: cover;
   height: 650px;
@@ -15,7 +15,7 @@
 }
 
 .index-content2{
-  background-image: url("/assets/index_content2.jpg");
+  background-image: image-url("index_content2.jpg");
   background-position: center bottom;
   background-size: cover;
   height: 600px;
