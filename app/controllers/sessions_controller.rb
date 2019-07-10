@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-  before_action :current_user
   before_action :login_redirect, except: :destroy
   
   def new

@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :authorize, :current_user
+  before_action :authorize
   before_action :get_tasks, :only => :index
   before_action :get_task, :only => [:show, :edit, :update, :delete, :processing, :finish]
   before_action :get_search_tags, :only => :index
