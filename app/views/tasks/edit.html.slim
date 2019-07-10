@@ -1,4 +1,4 @@
-.card.mb-3
+.container.card.mt-3.mb-3
   .card-body
     h3 = t('task.edit_task')
     = form_for @task, :url => { :controller => 'tasks', :action => 'update', :id => @task.taskid } do |f|
