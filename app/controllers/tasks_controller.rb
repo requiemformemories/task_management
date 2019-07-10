@@ -12,10 +12,6 @@ class TasksController < ApplicationController
   def show
   end
 
-  # def new
-    # @task = Task.new
-  # end
-
   def create
     @task = Task.new(task_params)
     if @task.save and @current_user
@@ -94,7 +90,6 @@ private
   end
   
   def get_search_tags
-    #@search_tags = Tag.select("tagname,count(tasks.id) as count").joins(:tasks).group("tags.id").limit(20)
     @search_tags = Task.select("tagname,count(tasks.id) as count").joins(:tags, :users).where("users.id" => @current_user).group("tags.id").limit(20)
   end
 

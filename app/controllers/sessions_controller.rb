@@ -1,8 +1,8 @@
 class SessionsController < ApplicationController
+  before_action :current_user
+  before_action :login_redirect, except: :destroy
+  
   def new
-    if !@current_user.nil?
-      redirect_to root_url
-    end
   end
 
   def create
@@ -11,7 +11,6 @@ class SessionsController < ApplicationController
       session[:user_id] = user.uid
       redirect_to tasks_path, notice: t('user.login_success')
     else
-      @auth = params[:password]
       redirect_to login_url, alert: t('user.login_failed')
     end
   end
@@ -19,5 +18,12 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     redirect_to root_url, notice: t('user.logged_out_notice')
+  end
+  
+  private
+  def login_redirect
+    if !@current_user.nil?
+      redirect_to root_url
+    end
   end
 end
