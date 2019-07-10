@@ -87,10 +87,10 @@ private
   
   def authorize
     user = User.find_by(uid: session[:user_id])
-    unless user
+    if user.nil?
       redirect_to login_url, alert: t("user.not_login_notice")
     end
-    
+  
     if user.role != 9
       redirect_to root_url, alert: t("user.auth_failed")
     end
