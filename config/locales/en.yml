@@ -42,6 +42,10 @@ en:
   created_at: "created_at"
   language: 'language'
   default_order: "default order"
+  errors:
+    404: 'The page you are looking for is not exist.'
+    422: 'The change you wanted was rejected.'
+    500: 'There might be a programming error. Please contact the owner to fix it.'
   task:    
     task: "task"
     tasks: "tasks"

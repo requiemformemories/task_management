@@ -18,4 +18,8 @@ Rails.application.routes.draw do
       patch 'password_update' 
     end
   end
+  
+  get "/404", to: "errors#not_found"
+  get "/422", to: "errors#unprocessable_entity"
+  get "/500", to: "errors#internal_error"
 end

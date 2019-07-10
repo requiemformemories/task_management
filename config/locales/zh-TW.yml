@@ -10,6 +10,10 @@
   order: "排序"
   created_at: "新增時間"
   language: '語言'
+  errors:
+    404: '你在找的頁面不存在哦！'
+    422: '無法處理你的請求。'
+    500: '伺服器發生錯誤, 快呼叫小碼農來處理吧'
   helpers:
     page_entries_info:
       more_pages:
