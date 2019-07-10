@@ -1,2 +1,28 @@
+$main-color: #11cea3;
+
+$theme-colors: (
+  "primary": $main-color,
+  "danger": #cc4f3b,
+  "success": #6eb80d
+);
+
 @import "bootstrap";
 @import "/\*";
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+TC:300|Roboto&display=swap");
+
+*{
+  font-family: 'Noto Sans TC', sans-serif;
+}
+
+.card, .btn, .form-control, .alert, .pagination, .pagination > .page-item > .page-link { 
+    border-radius: 0; 
+}
+
+::selection {
+  background: $main-color;
+  color: #fff;
+}
+::-moz-selection {
+  background: $main-color;
+  color: #fff;
+}

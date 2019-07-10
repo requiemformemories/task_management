@@ -15,8 +15,7 @@ RSpec.feature "login and logout function", :type => :feature do
     
     scenario 'logout sucessfully' do
       click_link I18n.t("user.logout")
-      expect(page).to have_content I18n.t("user.not_login_notice")
-      # should be "user.logged_out_notice" but there is no index page for not logined user.
+      expect(page).to have_content I18n.t("user.logged_out_notice")
     end
     
     scenario 'admin get in admin pages sucessfully' do

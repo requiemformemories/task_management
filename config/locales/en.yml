@@ -31,6 +31,17 @@
 
 en:
   application_title: "Task Management"
+  application_description: "A simple web application for managing tasks."
+  content1_title: "Simple, simple, and more simple"
+  content1_text: "With crude design and few functions, everyone get the hang of it."
+  func1_name: "Task Management"
+  func1_text: "A really basic task managing system that may work."
+  func2_name: "User Management"
+  func2_text: "A really basic user managing page that may work."
+  func3_name: "Login/Logout Functions"
+  func3_text: "really basic login and logout functions."
+  content2_title: "Whatever you like it or not, you could donate to make it better"
+  content2_text: "Like the project? Or hate it? You could donate me coffee or money for programming classes."
   back_to_index: "Back to Index"
   cancel: "cancel"
   create: "create"

@@ -1,4 +1,4 @@
-.card.mb-3
+.container.card.mt-3.mb-3
   .card-body
     h3.mb-3 = t('user.edit_user')
     = form_for @user, :url => { :controller => 'admin/users', :action => 'update', :id => @user.uid } do |f|

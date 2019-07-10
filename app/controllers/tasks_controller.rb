@@ -25,6 +25,7 @@ class TasksController < ApplicationController
       redirect_to :action => :index
     else
       get_tasks
+      get_search_tags
       render :index
       flash[:alert] = t("task.create_failed")
     end    

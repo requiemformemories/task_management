@@ -1,0 +1,33 @@
+.container-fluid.index-header
+  .row.justify-content-md-center
+    .col.col-md-8
+      h1.mt-5.display-3 = t('application_title')
+      p.lead.text-secondary = t('application_description') 
+      = link_to t('user.login'), login_path, class: "btn btn-primary"
+.container-fluid.index-content1.pb-5
+  .row.justify-content-md-center
+    .col-md-auto.text-center.mb-5
+      h2.mt-5.display-4 = t('content1_title')
+      p.lead.text-secondary = t('content1_text')
+  .row.justify-content-md-center
+    .card.border-primary.col-md-3.m-2
+      .card-body.text-primary
+        i.fa-3x.fas.fa-tasks.mb-2
+        h3.card-title = t('func1_name')
+        p.card-text = t('func1_text')
+    .card.border-primary.col-md-3.m-2
+      .card-body.text-primary
+        i.fa-3x.fas.fa-users-cog.mb-2
+        h3.card-title = t('func2_name')
+        p.card-text = t('func2_text')
+    .card.border-primary.col-md-3.m-2
+      .card-body.text-primary
+        i.fa-3x.fas.fa-sign-in-alt.mb-2
+        h3.card-title = t('func3_name')
+        p.card-text = t('func3_text')
+.container-fluid.index-content2
+  .row.justify-content-md-center
+    .col-md-auto.text-center.mb-5
+      h2.mt-5.display-4 = t('content2_title')
+      p.lead.text-secondary = t('content2_text')
+      = link_to "Donate", "https://donate.fumitsuki.tw", class: "btn btn-primary" 

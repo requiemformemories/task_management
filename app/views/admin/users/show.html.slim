@@ -1,4 +1,4 @@
-.card.mt-3
+.container.card.mt-3
   .card-body
     h3 = t('user.user')
   table.table
@@ -18,7 +18,7 @@
       = button_to t("delete"), admin_user_path(@user.uid), :method => :delete,:class => "btn btn-dark mr-1"
       = link_to t("back_to_index"), {:controller => 'admin/users', :action => 'index'}, class: "btn btn-primary mr-1"      
 
-.card.mt-3
+.container.card.mt-3
   .card-body
     h3 = t('task.tasks')
   table.table         
