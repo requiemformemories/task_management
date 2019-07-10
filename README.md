@@ -24,8 +24,7 @@ $ vim config/database.yml #edit the settings
 ### STEP3: install gems and setup database
 ```
 $ bundle install  
-$ rails db:create  
-$ rails db:migrate  
+$ rails db:setup
 ```
 
 ## Table schema
