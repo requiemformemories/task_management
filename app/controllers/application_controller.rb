@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_action :set_locale
+  before_action :set_locale, :current_user
   
     
   def set_locale
