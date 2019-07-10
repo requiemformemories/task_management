@@ -10,6 +10,13 @@ class ApplicationController < ActionController::Base
     I18n.locale = session[:locale] || I18n.default_locale
   end
   
+  private
+  def authorize
+    unless User.find_by(uid: session[:user_id])
+      redirect_to login_url, notice: t("user.not_login_notice")
+    end
+  end
+  
   def current_user
     if session[:user_id]
       @current_user ||= User.find_by(uid: session[:user_id])
@@ -17,12 +24,5 @@ class ApplicationController < ActionController::Base
       @current_user = nil
     end
   end  
-  
-  private
-  def authorize
-    unless User.find_by(uid: session[:user_id])
-      redirect_to login_url, notice: t("user.not_login_notice")
-    end
-  end
 
 end
