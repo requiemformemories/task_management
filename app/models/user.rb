@@ -7,8 +7,8 @@ class User < ApplicationRecord
   validates_uniqueness_of :uid, :username
   validates :name, length: {maximum: 20}
   validates :username, length: {maximum: 20}
-  has_many :user_taskships
-  has_many :tasks, :through => :user_taskships
+  has_many :user_taskships, :dependent => :destroy
+  has_many :tasks, :through => :user_taskships, :dependent => :destroy
   
   def admin?
     self.role == 9
@@ -36,13 +36,8 @@ class User < ApplicationRecord
       throw(:abort)
     end
     
-    delete_tasks  
   end  
-  
-  def delete_tasks
-    self.tasks.destroy_all
-  end  
-  
+
   def no_last_admin
     User.where(role: 9).count == 1 and self.role == 9
   end
