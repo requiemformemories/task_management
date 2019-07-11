@@ -42,24 +42,5 @@
         th scope="col"
     tbody
       - @tasks.each do |task|
-        tr
-          td = task.id
-          td.topic = task.topic
-          td = task.start_time.nil? ? "" : I18n.l(task.start_time, :format => :short)
-          td = task.end_time.nil? ? "" : I18n.l(task.end_time, :format => :short)
-          td[class="#{task.status_color}"]
-            = task.status_name
-          td[class="#{task.priority_color}"]
-            = task.priority_name
-          td 
-            - task.all_tags.split(",").each do |tag|
-              = link_to tag.strip, tasks_path(tag: tag.strip)
-              |  
-          td
-            .row
-                = link_to t("show"), {:controller => 'tasks', :action => 'show', :id => task.taskid}, :class => "btn btn-light"
-                = link_to t("edit"), {:controller => 'tasks', :action => 'edit', :id => task.taskid}, :class => "btn btn-light"
-                = task_aasm_link(task)
-            .row
-                = button_to t("delete"), task_path(task.taskid), :method => :delete,:class => "btn btn-dark"
+        = render :partial => 'shared/tasktr', :locals => { :task => task }
   = paginate @tasks
