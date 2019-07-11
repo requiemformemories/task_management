@@ -15,10 +15,10 @@ RSpec.describe User, type: :model do
   end
   
   describe "when user is destroyed" do
-    let(:adminuser) { User.new(:name => "name", :username => "username", :password => "secr**", :password_confirmation => "secr**",:role => 0) }
-    let(:user) { User.new(:name => "name", :username => "username", :password => "secr**", :password_confirmation => "secr**",:role => 0) }
-    let(:task) { Task.new(:topic => "task", :priority => 0) }
-    let(:ship) { UserTaskship.new(:task => task, :user => user) }
+    let(:adminuser) { User.create(:name => "name", :username => "username", :password => "secr**", :password_confirmation => "secr**",:role => 9) }
+    let(:user) { User.create(:name => "name1", :username => "username1", :password => "secr**", :password_confirmation => "secr**",:role => 0) }
+    let(:task) { Task.create(:topic => "task", :priority => 0) }
+    let(:ship) { UserTaskship.create(:task => task, :user => user) }
     
     it "will delete tasks" do
       user.destroy

@@ -31,8 +31,9 @@ class User < ApplicationRecord
   end
   
   def delete_check
-    if !check_last_admin
+    if no_last_admin
       self.errors.messages[:role] = I18n.t('user.need_last_admin')
+      throw(:abort)
     end
     
     delete_tasks  
@@ -42,7 +43,7 @@ class User < ApplicationRecord
     self.tasks.destroy_all
   end  
   
-  def check_last_admin
-    User.where(role: 9).count > 1
+  def no_last_admin
+    User.where(role: 9).count == 1 and self.role == 9
   end
 end
