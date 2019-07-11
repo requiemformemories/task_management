@@ -44,6 +44,7 @@ gem 'kaminari'
 gem 'sprockets-rails'
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
+gem 'font-awesome-rails'
 
 group :development, :test do
   gem 'rspec'
