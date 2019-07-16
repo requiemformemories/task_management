@@ -36,7 +36,6 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'pg'
 gem 'slim'
-gem 'travis'
 gem 'rails-i18n'
 gem 'aasm'
 gem 'ransack'
