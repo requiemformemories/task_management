@@ -4,10 +4,10 @@ tr
   td.topic = task.topic
   td = task.start_time.nil? ? "" : I18n.l(task.start_time, :format => :short)
   td = task.end_time.nil? ? "" : I18n.l(task.end_time, :format => :short)
-  td[class="#{task.status_color}"]
-    = task.status_name
-  td[class="#{task.priority_color}"]
-    = task.priority_name
+  td[class="#{status_color[task.status.to_sym]}"]
+    = t(task.status, scope: :task)
+  td[class="#{priority_color[task.priority.to_sym]}"]
+    = t(task.priority, scope: :task)
   td 
     - task.all_tags.split(",").each do |tag|
       = link_to tag.strip, tasks_path(tag: tag.strip)

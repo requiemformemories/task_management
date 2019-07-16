@@ -11,12 +11,12 @@
         td = @task.end_time.nil? ? "" : I18n.l(@task.end_time, :format => :short)
       tr 
         td = t("task.status")
-        td[class="#{@task.status_color}"]
-          = @task.status_name
+        td[class="#{status_color[@task.status.to_sym]}"]
+          = t(@task.status, scope: :task)
       tr
         td = t("task.priority")
-        td[class="#{@task.priority_color}"] 
-          = @task.priority_name
+        td[class="#{priority_color[@task.priority.to_sym]}"] 
+          = t(@task.priority, scope: :task)
       tr
         td = t('task.user')
         td = users_list(@task)

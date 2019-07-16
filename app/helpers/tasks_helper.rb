@@ -7,9 +7,18 @@ module TasksHelper
   end  
   
   def priority_options
-    return [[t('task.priority_0'), 0], [t('task.priority_1'), 1], [t('task.priority_2'), 2]]
+    return Task.priorities.keys.map {|p| [t(p, scope: :task), p]}.to_h
   end 
   
+  def status_color
+    {pending: "text-secondary", in_progress: "text-info", finished: "text-primary"}
+  end
+  
+  def priority_color
+    {low: "text-success", medium: "text-warning", high: "text-danger"}
+  end
+
+
   def task_aasm_link(task)
     case task.status
       when "pending"
