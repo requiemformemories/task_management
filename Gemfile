@@ -46,7 +46,7 @@ gem 'jquery-rails'
 gem 'font-awesome-rails'
 
 group :development, :test do
-  gem 'rspec'
+ # gem 'rspec'
   gem 'rspec-rails'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end

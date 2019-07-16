@@ -14,7 +14,7 @@ RSpec.feature "managing tasks", :type => :feature do
       visit "/tasks"
       within("form#new_task") do
         fill_in "task[topic]", :with => "task with time"
-        select(I18n.t("task.priority_0"), from: 'task[priority]')
+        select(I18n.t("task.low"), from: 'task[priority]')
         fill_in "task[start_time]", :with => "2019-01-01 09:00:00"
         fill_in "task[end_time]", :with => "2019-02-01 18:00:00"
       end
@@ -28,7 +28,7 @@ RSpec.feature "managing tasks", :type => :feature do
       visit "/tasks"
       within("form#new_task") do
         fill_in "task[topic]", :with => "task"
-        select(I18n.t("task.priority_0"), from: 'task[priority]')
+        select(I18n.t("task.low"), from: 'task[priority]')
       end
       click_button I18n.t("create")
       click_link I18n.t("show")
@@ -39,7 +39,7 @@ RSpec.feature "managing tasks", :type => :feature do
       visit "/tasks"
       within("form#new_task") do
         fill_in "task[topic]", :with => "task"    
-        select(I18n.t("task.priority_0"), from: 'task[priority]')
+        select(I18n.t("task.low"), from: 'task[priority]')
       end
       click_button I18n.t("create")
       click_link I18n.t("task.processing")
@@ -51,7 +51,7 @@ RSpec.feature "managing tasks", :type => :feature do
       visit "/tasks"
       within("form#new_task") do
         fill_in "task[topic]", :with => "task"    
-        select(I18n.t("task.priority_0"), from: 'task[priority]')
+        select(I18n.t("task.low"), from: 'task[priority]')
       end
       click_button I18n.t("create")
       click_link I18n.t("task.processing")
@@ -64,33 +64,33 @@ RSpec.feature "managing tasks", :type => :feature do
       visit "/tasks"
       within("form#new_task") do
         fill_in "task[topic]", :with => "task with low priority" 
-        select(I18n.t("task.priority_0"), from: 'task[priority]')
+        select(I18n.t("task.low"), from: 'task[priority]')
       end
       click_button I18n.t("create")
       click_link I18n.t("show")
-      expect(page).to have_content I18n.t("task.priority_1")
+      expect(page).to have_content I18n.t("task.low")
     end
   
     scenario "priority:medium" do
       visit "/tasks"
       within("form#new_task") do
         fill_in "task[topic]", :with => "task with medium priority"
-        select(I18n.t("task.priority_1"), from: 'task[priority]')
+        select(I18n.t("task.medium"), from: 'task[priority]')
       end
       click_button I18n.t("create")
       click_link I18n.t("show")
-      expect(page).to have_content I18n.t("task.priority_1")
+      expect(page).to have_content I18n.t("task.medium")
     end
   
     scenario "priority:high" do
       visit "/tasks"
       within("form#new_task") do
         fill_in "task[topic]", :with => "task with high priority"
-        select(I18n.t("task.priority_2"), from: 'task[priority]')
+        select(I18n.t("task.high"), from: 'task[priority]')
       end
       click_button I18n.t("create")
       click_link I18n.t("show")
-      expect(page).to have_content I18n.t("task.priority_2")
+      expect(page).to have_content I18n.t("task.high")
     end 
     
     scenario "tags: aaa, bbb, ccc" do
