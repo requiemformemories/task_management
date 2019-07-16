@@ -11,7 +11,7 @@
         td = @user.name
       tr
         td = t("user.role")
-        td = @user.role_name
+        td = t(@user.role, scope: :user)
   .card-body  
     .row
       = link_to t("edit"), {:controller => 'admin/users', :action => 'edit', :id => @user.uid}, :class => "btn btn-light mr-1"

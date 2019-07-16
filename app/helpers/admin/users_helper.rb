@@ -1,5 +1,5 @@
 module Admin::UsersHelper
   def role_options
-    return [[t('user.role0'), 0], [t('user.role9'), 9]]
+    return User.roles.keys.map {|role| [t(role, scope: :user), role]}.to_h
   end      
 end

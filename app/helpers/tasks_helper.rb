@@ -2,7 +2,7 @@ module TasksHelper
   
   def status_options
     id = Task.aasm.states.map &:name
-    name = id.map {|e| I18n.t("task."+e.to_s) }
+    name = id.map {|e| t("task."+e.to_s) }
     return name.zip(id).to_h
   end  
   
