@@ -58,14 +58,6 @@ RSpec.feature "searching and sorting tasks", :type => :feature do
       topics = page.all(".topic").map(&:text)
       expect(topics).to eq ["c","bc","a"]
     end
-  end
-  
+  end  
 end 
 
-private
-
-def login(username, password)
-  fill_in I18n.t('user.username'), with: username
-  fill_in I18n.t('user.password'), with: password
-  click_button I18n.t('user.login')
-end

@@ -85,11 +85,3 @@ RSpec.feature "managing users", :type => :feature do
     end
   end  
 end
-
-private
-
-def login(username, password)
-  fill_in I18n.t('user.username'), with: username
-  fill_in I18n.t('user.password'), with: password
-  click_button I18n.t('user.login')
-end
