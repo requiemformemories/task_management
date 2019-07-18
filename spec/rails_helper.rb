@@ -63,4 +63,10 @@ RSpec.configure do |config|
   
   config.include(Shoulda::Matchers::ActiveModel, type: :model)
   config.include(Shoulda::Matchers::ActiveRecord, type: :model)
+
+  def login(username, password)
+    fill_in I18n.t('user.username'), with: username
+    fill_in I18n.t('user.password'), with: password
+    click_button I18n.t('user.login')
+  end
 end

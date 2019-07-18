@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.feature "login and logout function", :type => :feature do
   context "login and logout function" do  
-    let!(:user) { User.create(:name => "name", :username => "username", :password => "secr**", :password_confirmation => "secr**",:role => 9) }
+    let!(:user) { User.create(:name => "name", :username => "username", :password => "secr**", :password_confirmation => "secr**",:role => "admin") }
     
     before :each do
       visit '/login'
@@ -25,7 +25,7 @@ RSpec.feature "login and logout function", :type => :feature do
   end
   
   context "block unvaild users" do  
-    let!(:user) { User.create(:name => "name", :username => "username", :password => "secr**", :password_confirmation => "secr**",:role => 0) }
+    let!(:user) { User.create(:name => "name", :username => "username", :password => "secr**", :password_confirmation => "secr**",:role => "default_user") }
     
     scenario 'login sucessfully' do
       visit '/login'
@@ -45,11 +45,3 @@ RSpec.feature "login and logout function", :type => :feature do
     
   end
 end 
-
-private
-
-def login(username, password)
-  fill_in I18n.t('user.username'), with: username
-  fill_in I18n.t('user.password'), with: password
-  click_button I18n.t('user.login')
-end

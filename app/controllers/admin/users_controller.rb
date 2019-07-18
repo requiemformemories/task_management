@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-  before_action :authorize
+  before_action :authorize, :authorize_admin
   before_action :get_users, :only => :index
   before_action :get_user, :only => [:show, :edit, :update, :destroy, :password_edit, :password_update]
   
@@ -85,13 +85,8 @@ private
     params.require(:user).permit(:password, :password_confirmation)
   end  
   
-  def authorize
-    user = User.find_by(uid: session[:user_id])
-    if user.nil?
-      redirect_to login_url, alert: t("user.not_login_notice")
-    end
-  
-    if user.role != 9
+  def authorize_admin
+    if !@current_user.admin?
       redirect_to root_url, alert: t("user.auth_failed")
     end
   end
