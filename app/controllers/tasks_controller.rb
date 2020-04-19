@@ -1,10 +1,10 @@
 class TasksController < ApplicationController
   before_action :authorize
   before_action :get_tasks, :only => :index
-  before_action :get_task, :only => [:show, :edit, :update, :delete, :processing, :finish]
+  before_action :get_task, :only => [:show, :edit, :update, :destroy, :processing, :finish]
   before_action :get_search_tags, :only => :index
-  
-  
+
+
   def index
     @task = Task.new
   end
@@ -24,7 +24,7 @@ class TasksController < ApplicationController
       get_search_tags
       render :index
       flash[:alert] = t("task.create_failed")
-    end    
+    end
   end
 
   def edit
@@ -46,10 +46,10 @@ class TasksController < ApplicationController
       flash[:notice] = t("task.delete_success")
     else
       flash[:alert] = t("task.delete_failed")
-    end  
+    end
     redirect_to :action => :index
   end
-  
+
   def processing
     if @task.may_process?
       @task.process!
@@ -59,7 +59,7 @@ class TasksController < ApplicationController
     end
       redirect_to :action => :index
   end
-  
+
   def finish
     if @task.may_finish?
       @task.finish!
@@ -68,8 +68,8 @@ class TasksController < ApplicationController
       flash[:alert] = t("task.finish_failed")
     end
       redirect_to :action => :index
-  end  
-  
+  end
+
 
 private
   def get_tasks
@@ -80,7 +80,7 @@ private
     @q = @q.includes(:users).ransack(params[:q])
     @tasks = @q.result.page(params[:page]).per(10)
   end
-  
+
   def get_task
     id =  params[:id] || params[:task_id]
     @task = @current_user.tasks.find_by_taskid(id)
@@ -88,7 +88,7 @@ private
       redirect_to tasks_path, alert: t('task.notexist')
     end
   end
-  
+
   def get_search_tags
     @search_tags = Task.select("tagname,count(tasks.id) as count").joins(:tags, :users).where("users.id" => @current_user).group("tags.id").limit(20)
   end

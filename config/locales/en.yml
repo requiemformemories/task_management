@@ -27,7 +27,7 @@
 #   'true': 'foo'
 #
 # To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
+# available at https://guides.rubyonrails.org/i18n.html.
 
 en:
   application_title: "Task Management"
@@ -57,7 +57,7 @@ en:
     404: 'The page you are looking for is not exist.'
     422: 'The change you wanted was rejected.'
     500: 'There might be a programming error. Please contact the owner to fix it.'
-  task:    
+  task:
     task: "task"
     tasks: "tasks"
     topic: "topic"
@@ -117,13 +117,13 @@ en:
     delete_success: "the user is successfully deleted."
     delete_failed: "fail to delete the user."
     need_last_admin: "You cannot delete the last admin."
-  tag: 
+  tag:
     tag: "tag"
     tags: "tags"
     separated_with_comma: 'please separated with comma'
   activerecord:
-    attributes: 
-      task:   
+    attributes:
+      task:
         topic: "topic"
         start_time: "start time"
         end_time: "end time"
