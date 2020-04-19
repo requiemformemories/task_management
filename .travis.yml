@@ -1,11 +1,23 @@
 language: ruby
 rvm:
 - 2.6.3
+
+services:
+  - postgresql
+
+before_install:
+  - gem install bundler -v 2.0.2
+  - nvm install 12.16.1
+  - npm install -g yarn
+
 script:
+- yarn
+- RAILS_ENV=test ./bin/rails webpacker:compile
 - cp database.travis.yml config/database.yml
 - rm db/seeds.rb
 - cp seeds.travis.rb db/seeds.rb
 - bundle exec rake db:setup
 - bundle exec rspec
+
 services:
 - postgresql
