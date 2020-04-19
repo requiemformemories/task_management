@@ -2,26 +2,26 @@ doctype html
 html
   head
     title Backend5xtraining
-    = csrf_meta_tags 
-    = csp_meta_tag 
+    = csrf_meta_tags
+    = csp_meta_tag
 
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application'
+    = stylesheet_pack_tag 'application', media: 'all'
   body
     = render 'shared/header'
     .container
       - if flash[:notice]
         .alert.alert-success.mt-2 role="alert"
-          = flash[:notice] 
+          = flash[:notice]
           button.close type="button" data-dismiss="alert" aria-label="Close"
-            span aria-hidden="true" 
+            span aria-hidden="true"
               | &times;
-      
+
       - if flash[:alert]
         .alert.alert-danger.mt-2 role="alert"
-          = flash[:alert] 
+          = flash[:alert]
           button.close type="button" data-dismiss="alert" aria-label="Close"
-            span aria-hidden="true" 
-              | &times;   
-              
+            span aria-hidden="true"
+              | &times;
+
     = yield
